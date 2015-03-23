@@ -28,4 +28,14 @@ RSpec.describe RepoParser do
 
     expect(ruby_names).to eq names
   end
+
+  it 'returns only non-forked repositories' do
+    repositories = RepoParser.run.repositories
+
+    forked = repositories.select do |repo|
+      repo.fork
+    end
+
+    expect(forked).to be_empty
+  end
 end
