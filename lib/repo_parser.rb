@@ -20,6 +20,7 @@ module RepoParser
     value
   end
 
+  # Result stores the result of a parsing
   class Result < Struct.new(:repositories)
     def to_string
       lines = []
@@ -49,7 +50,7 @@ module RepoParser
 
   # Fetcher fetches an api response
   class Fetcher
-    def self.call(_)
+    def self.call(_ = nil) # HACK: for chain simplicity
       HTTParty.get('https://api.github.com/repositories').parsed_response
     end
   end
