@@ -9,13 +9,12 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Matthew Rudy Jacobs']
   spec.email         = ['matthewrudyjacobs@gmail.com']
   spec.summary       = 'RepoParser is a code example'
-  spec.description   = 'Take the github repositories list, and filter it to ruby libraries.'
   spec.homepage      = 'https://github.com/matthewrudy/repo_parser'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.executables   = spec.files.grep(/^bin\//) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(/^(test|spec|features)\//)
   spec.require_paths = ['lib']
 
   spec.add_dependency 'httparty', '~> 0.13.3'

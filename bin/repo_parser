@@ -3,4 +3,4 @@
 require 'repo_parser'
 
 result = RepoParser.run
-puts result.to_string
+puts result

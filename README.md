@@ -14,7 +14,7 @@ Take response of https://api.github.com/repositories and perform the following a
 
     $ gem install repo_parser
 
-    $ repo-parser
+    $ repo_parser
 
     RepoParser
     ==========

@@ -32,9 +32,7 @@ RSpec.describe RepoParser do
   it 'returns only non-forked repositories' do
     repositories = RepoParser.run.repositories
 
-    forked = repositories.select do |repo|
-      repo.fork
-    end
+    forked = repositories.select(&:fork)
 
     expect(forked).to be_empty
   end

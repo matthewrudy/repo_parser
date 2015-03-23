@@ -22,13 +22,8 @@ module RepoParser
   end
 
   # Result stores the result of a parsing
-  class Result
-    def initialize(repositories)
-      @repositories = repositories
-    end
-    attr_reader :repositories
-    
-    def to_string
+  class Result < Struct.new(:repositories)
+    def to_s
       lines = []
 
       lines << <<-STRING
@@ -36,15 +31,7 @@ module RepoParser
         ==========
       STRING
 
-      repositories.each do |repo|
-        lines << <<-STRING
-        #{repo.name}:
-          name:  #{repo.name}
-          url:   #{repo.url}
-          owner: #{repo.owner}
-        ----------
-        STRING
-      end
+      lines += repositories.map(&:to_s)
 
       lines << <<-STRING
         Total: #{repositories.length}
@@ -74,7 +61,17 @@ module RepoParser
   end
 
   # Repository represents a repository
-  Repository = Struct.new(:name, :url, :owner, :fork)
+  class Repository < Struct.new(:name, :url, :owner, :fork)
+    def to_s
+      <<-STRING
+        #{name}:
+          name:  #{name}
+          url:   #{url}
+          owner: #{owner}
+        ----------
+      STRING
+    end
+  end
 
   # Filterer filters non-matching repositories
   class Filterer
