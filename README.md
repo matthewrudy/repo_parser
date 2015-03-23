@@ -1,31 +1,11 @@
-# Resume
+# RepoParser
 
-TODO: Write a gem description
+A coding example.
 
-## Installation
+## Task
 
-Add this line to your application's Gemfile:
+Take response of https://api.github.com/repositories and perform the following actions;
 
-```ruby
-gem 'resume'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install resume
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/resume/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+* search results for any repository with “ruby” in the name and are not forks
+* sort Alphabetically by owner name
+* response should be displayed showing repo name, owner name, URL to repo

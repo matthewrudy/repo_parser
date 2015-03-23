@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'resume'
-
-repos = Resume.run
-puts repos.to_yaml

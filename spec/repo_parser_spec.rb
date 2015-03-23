@@ -1,12 +1,8 @@
 require 'spec_helper'
 
-RSpec.describe Resume do
-  it 'has a version number' do
-    expect(Resume::VERSION).not_to be nil
-  end
-
+RSpec.describe RepoParser do
   it 'returns a list of repositories' do
-    repositories = Resume.run
+    repositories = RepoParser.run.repositories
     expect(repositories).to be_an(Array)
 
     repo = repositories.first
@@ -16,14 +12,14 @@ RSpec.describe Resume do
   end
 
   it 'returns the repositories ordered by owner' do
-    repositories = Resume.run
+    repositories = RepoParser.run.repositories
 
     names = repositories.map(&:owner)
     expect(names).to eq names.sort
   end
 
   it 'returns only ruby repositories' do
-    repositories = Resume.run
+    repositories = RepoParser.run.repositories
 
     names = repositories.map(&:name)
     ruby_names = names.select do |name|

@@ -1,13 +1,17 @@
-require 'resume/version'
+require 'repo_parser/version'
 require 'httparty'
 
-# Resume is a coding test
+# RepoParser is a coding test
 # involving scraping some github json,
 # and sorting it.
-module Resume
+module RepoParser
   def self.run
     repos = Parser.call(Fetcher.call)
-    Sorter.call(Filterer.call(repos))
+    sorted = Sorter.call(Filterer.call(repos))
+    Result.new(sorted)
+  end
+  
+  class Result < Struct.new(:repositories)
   end
 
   # Fetcher fetches an api response

@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'repo_parser'
+
+repos = RepoParser.run
+puts repos.to_yaml
