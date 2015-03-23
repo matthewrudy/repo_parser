@@ -21,7 +21,12 @@ module RepoParser
   end
 
   # Result stores the result of a parsing
-  class Result < Struct.new(:repositories)
+  class Result
+    def initialize(repositories)
+      @repositories = repositories
+    end
+    attr_reader :repositories
+    
     def to_string
       lines = []
 
