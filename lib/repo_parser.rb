@@ -11,7 +11,8 @@ module RepoParser
   end
 
   def self.chain(*processors)
-    value = nil
+    # the first is called with no args
+    value = processors.shift.call
 
     processors.each do |proc|
       value = proc.call(value)
@@ -55,7 +56,7 @@ module RepoParser
 
   # Fetcher fetches an api response
   class Fetcher
-    def self.call(_ = nil) # HACK: for chain simplicity
+    def self.call
       HTTParty.get('https://api.github.com/repositories').parsed_response
     end
   end
