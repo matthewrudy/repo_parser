@@ -1,5 +1,7 @@
 # RepoParser
 
+[![Build Status](https://travis-ci.org/matthewrudy/repo_parser.svg)](https://travis-ci.org/matthewrudy/repo_parser)
+
 A coding example.
 
 ## Task
