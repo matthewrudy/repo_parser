@@ -1,3 +1,5 @@
 # allow class Abc < Struct.new(:def)
 Style/StructInheritance:
   Enabled: false
+
+require: rubocop-rspec

@@ -7,8 +7,12 @@ RSpec.describe RepoParser do
     stub_request(:get, 'https://api.github.com/repositories').to_return(stub)
   end
 
+  let(:result) do
+    described_class.run
+  end
+
   it 'returns a list of repositories' do
-    repositories = RepoParser.run.repositories
+    repositories = result.repositories
     expect(repositories).to be_an(Array)
 
     repo = repositories.first
@@ -18,14 +22,15 @@ RSpec.describe RepoParser do
   end
 
   it 'returns the repositories ordered by owner' do
-    repositories = RepoParser.run.repositories
+    repositories = result.repositories
 
-    names = repositories.map(&:owner)
-    expect(names).to eq names.sort
+    owners = repositories.map(&:owner)
+
+    expect(owners).to eq owners.sort
   end
 
   it 'returns only ruby repositories' do
-    repositories = RepoParser.run.repositories
+    repositories = result.repositories
 
     names = repositories.map(&:name)
     ruby_names = names.select do |name|
@@ -36,7 +41,7 @@ RSpec.describe RepoParser do
   end
 
   it 'returns only non-forked repositories' do
-    repositories = RepoParser.run.repositories
+    repositories = result.repositories
 
     forked = repositories.select(&:fork)
 
