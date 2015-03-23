@@ -6,12 +6,30 @@ RSpec.describe Resume do
   end
 
   it 'returns a list of repositories' do
-    result = Resume.run
-    expect(result).to be_an(Array)
+    repositories = Resume.run
+    expect(repositories).to be_an(Array)
 
-    first = result.first
-    expect(first.name).to be_present
-    expect(first.owner).to be_present
-    expect(first.url).to be_present
+    repo = repositories.first
+    expect(repo.name).to be_present
+    expect(repo.owner).to be_present
+    expect(repo.url).to be_present
+  end
+
+  it 'returns the repositories ordered by owner' do
+    repositories = Resume.run
+
+    names = repositories.map(&:owner)
+    expect(names).to eq names.sort
+  end
+
+  it 'returns only ruby repositories' do
+    repositories = Resume.run
+
+    names = repositories.map(&:name)
+    ruby_names = names.select do |name|
+      name =~ /ruby/i
+    end
+
+    expect(ruby_names).to eq names
   end
 end
