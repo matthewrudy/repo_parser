@@ -2,5 +2,5 @@
 
 require 'repo_parser'
 
-repos = RepoParser.run
-puts repos.to_yaml
+result = RepoParser.run
+puts result.to_string

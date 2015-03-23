@@ -10,8 +10,31 @@ module RepoParser
     sorted = Sorter.call(Filterer.call(repos))
     Result.new(sorted)
   end
-  
+
   class Result < Struct.new(:repositories)
+    def to_string
+      lines = []
+
+      lines << <<-STRING
+        RepoParser
+        ==========
+      STRING
+
+      repositories.each do |repo|
+        lines << <<-STRING
+        #{repo.name}:
+          name:  #{repo.name}
+          url:   #{repo.url}
+          owner: #{repo.owner}
+        STRING
+      end
+
+      lines << <<-STRING
+        Total: #{repositories.length}
+      STRING
+      
+      lines.join('-' * 32 + "\n")
+    end
   end
 
   # Fetcher fetches an api response
