@@ -6,9 +6,18 @@ require 'httparty'
 # and sorting it.
 module RepoParser
   def self.run
-    repos = Parser.call(Fetcher.call)
-    sorted = Sorter.call(Filterer.call(repos))
-    Result.new(sorted)
+    repos = chain(Fetcher, Parser, Filterer, Sorter)
+    Result.new(repos)
+  end
+
+  def self.chain(*processors)
+    value = nil
+
+    processors.each do |proc|
+      value = proc.call(value)
+    end
+
+    value
   end
 
   class Result < Struct.new(:repositories)
@@ -40,7 +49,7 @@ module RepoParser
 
   # Fetcher fetches an api response
   class Fetcher
-    def self.call
+    def self.call(_)
       HTTParty.get('https://api.github.com/repositories').parsed_response
     end
   end
