@@ -26,14 +26,15 @@ module RepoParser
           name:  #{repo.name}
           url:   #{repo.url}
           owner: #{repo.owner}
+        ----------
         STRING
       end
 
       lines << <<-STRING
         Total: #{repositories.length}
       STRING
-      
-      lines.join('-' * 32 + "\n")
+
+      lines.join
     end
   end
 
