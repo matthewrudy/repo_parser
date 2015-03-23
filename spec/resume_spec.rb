@@ -10,8 +10,8 @@ RSpec.describe Resume do
     expect(result).to be_an(Array)
 
     first = result.first
-    expect(first.repo_name).to be_present
-    expect(first.owner_name).to be_present
-    expect(first.repo_url).to be_present
+    expect(first.name).to be_present
+    expect(first.owner).to be_present
+    expect(first.url).to be_present
   end
 end
