@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 RSpec.describe RepoParser do
+  before do
+    # stub all requests to the URI
+    stub = File.open('spec/fixtures/repositories.response')
+    stub_request(:get, 'https://api.github.com/repositories').to_return(stub)
+  end
+
   it 'returns a list of repositories' do
     repositories = RepoParser.run.repositories
     expect(repositories).to be_an(Array)

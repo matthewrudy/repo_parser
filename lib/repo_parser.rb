@@ -41,10 +41,12 @@ module RepoParser
     end
   end
 
+  API_URL = 'https://api.github.com/repositories'.freeze
+
   # Fetcher fetches an api response
   class Fetcher
     def self.call
-      HTTParty.get('https://api.github.com/repositories').parsed_response
+      HTTParty.get(API_URL).parsed_response
     end
   end
 
