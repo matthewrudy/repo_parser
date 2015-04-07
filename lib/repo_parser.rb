@@ -22,7 +22,7 @@ module RepoParser
   end
 
   # Result stores the result of a parsing
-  class Result < Struct.new(:repositories)
+  Result = Struct.new(:repositories) do
     def to_s
       lines = []
 
@@ -63,7 +63,7 @@ module RepoParser
   end
 
   # Repository represents a repository
-  class Repository < Struct.new(:name, :url, :owner, :fork)
+  Repository = Struct.new(:name, :url, :owner, :fork) do
     def to_s
       <<-STRING
         #{name}:
