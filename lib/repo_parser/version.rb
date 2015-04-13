@@ -1,5 +1,3 @@
-# rubocop:disable Style/Documentation
-# this is documented in the main file
-module RepoParser
+module RepoParser # :nodoc:
   VERSION = '0.0.3'
 end
